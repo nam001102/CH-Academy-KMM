@@ -97,7 +97,7 @@ class AccountManager() : Screen {
                     enter = fadeIn(animationSpec = tween(durationMillis = 500)),
                     exit = fadeOut(animationSpec = tween(durationMillis = 200))
                 ) {
-                    ComposeLogin(this)
+                    ComposeLogin()
                 }
                 AnimatedVisibility(
                     visible = !isLogin,
