@@ -1,12 +1,6 @@
 package Login
 
-import Utils.AppContext
-import Utils.KMMStorage
-import androidx.compose.animation.AnimatedVisibility
-import androidx.compose.animation.AnimatedVisibilityScope
-import androidx.compose.animation.core.tween
-import androidx.compose.animation.fadeOut
-import androidx.compose.animation.slideInVertically
+import com.chacademy.android.Utils.AppContext
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.indication
@@ -16,19 +10,11 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.text.ClickableText
-import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
-import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextField
-import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -37,26 +23,17 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.text.SpanStyle
-import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontFamily
-import androidx.compose.ui.text.input.ImeAction
-import androidx.compose.ui.text.input.KeyboardType
-import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.TextFieldValue
-import androidx.compose.ui.text.input.VisualTransformation
-import androidx.compose.ui.text.style.TextDecoration
-import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import chacademy.composeapp.generated.resources.Res
 import chacademy.composeapp.generated.resources.worksans_regular
-import dev.gitlive.firebase.auth.FirebaseAuth
-import dev.gitlive.firebase.firestore.FirebaseFirestore
+import com.chacademy.android.Utils.UserData
+import dev.gitlive.firebase.Firebase
+import dev.gitlive.firebase.firestore.firestore
 import org.jetbrains.compose.resources.ExperimentalResourceApi
 import org.jetbrains.compose.resources.Font
-import org.jetbrains.compose.resources.painterResource
 
 
 private var userPhone by mutableStateOf(TextFieldValue(""))
@@ -173,6 +150,134 @@ fun ComposeLogin() {
 //            )
 //        }
 //    }
+    val interactionSource = remember { MutableInteractionSource() }
+    var isForgot by remember { mutableStateOf(false) }
+    var showError by remember { mutableStateOf(false) }
+    var textError by remember {
+        mutableStateOf("")
+    }
+    var user by remember { mutableStateOf(UserData) }
+
+    Column(
+        Modifier
+            .fillMaxWidth()
+            .fillMaxHeight()
+            .background(color = Color.White)
+    ) {
+        Spacer(modifier = Modifier.padding(top = 10.dp))
+        Text(
+            text = "Đăng nhập",
+            fontSize = 26.sp,
+            fontFamily = FontFamily(Font(Res.font.worksans_regular)),
+            color = Color.Black
+        )
+        loginInput()
+        Box(
+            Modifier
+                .fillMaxWidth(),
+            Alignment.CenterEnd
+        ) {
+            Button(
+                onClick = {
+                    if (userPhone.text.isEmpty()) {
+                        showError = true
+                        textError = "Vui lòng nhập số điện thoại"
+                    } else {
+                        val phoneNumberIncludeCode = "+84${userPhone.text.substring(1)}"
+                        val db = Firebase.firestore
+
+                        isForgot = true
+
+
+                        val userDocRef =  db.collection("users").document(phoneNumberIncludeCode).get()
+
+                        userDocRef.get().addOnSuccessListener { document ->
+                            if (document != null && document.exists()) {
+                                // if the document exists, get the user's data as a custom data class
+                                val name = document.getString("name")
+                                val date = document.getString("date")
+                                if (name != null) {
+                                    if (date != null) {
+                                        val sharedPreferences = context.getSharedPreferences("MyAppPreferences", Context.MODE_PRIVATE)
+                                        val editor = sharedPreferences.edit()
+                                        editor.putBoolean("isForgot", isForgot)
+                                        editor.apply()
+                                        navController.navigate("otpScreen?Date=${date}&Name=${name}&Password=${userPassword.text}&phoneNumber=${userPhone.text}")
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                colors = ButtonDefaults.outlinedButtonColors(contentColor = Color.Black)
+            ) {
+                Text(
+                    text = "Quên mật khẩu?",
+                    color = Color.Black,
+                    modifier = Modifier
+                )
+            }
+        }
+        if (errorMessage.isNotEmpty()) {
+            showErrorCompose(showError, errorMessage)
+        } else {
+            showErrorCompose(showError, textError)
+        }
+
+        Spacer(modifier = Modifier.padding(top = 10.dp))
+        Button(
+            onClick = {
+                if (userPhone.text.isEmpty()) {
+                    showError = true
+                    textError = "Số điện thoại không được để trống"
+                } else if (userPhone.text.length != 10 || userPhone.text.take(1) != "0") {
+                    showError = true
+                    textError = "Số điện thoại không hợp lệ"
+                }
+                if (userPhone.text.isNotEmpty() && userPassword.text.isNotEmpty()) {
+                    startLoggingIn(context, userPhone.text, userPassword.text)
+                }
+            },
+            modifier = Modifier
+                .indication(
+                    interactionSource = interactionSource,
+                    indication = null
+                )
+                .fillMaxWidth()
+                .padding(start = 20.dp, end = 20.dp)
+                .background(
+                    color = Color.Transparent,
+                    shape = MaterialTheme.shapes.small // You can adjust the shape as needed
+                ),
+            border = BorderStroke(1.dp, Color.Black),
+            colors = ButtonDefaults.outlinedButtonColors(contentColor = Color.Black)
+        ) {
+            Text(
+                text = "Đăng nhập",
+                fontSize = 16.sp,
+                fontFamily = FontFamily(Font(Res.font.worksans_regular)),
+                color = Color.Black
+            )
+        }
+    }
+>>>>>>> Stashed changes
+}
+suspend fun getUsers(user: String): UserData {
+    val firebaseFirestore = Firebase.firestore
+    try {
+        val userDocRef =  firebaseFirestore.collection("users").document(user)
+        val userStatsDocument = userDocRef.collection("Stats").document("State")
+        val userResponse =
+            firebaseFirestore.collection("USERS").get()
+        return userDocRef.get().data{document->
+            if (document != null && document.exists()) {
+                val name = document.getString("name")
+                val date = document.getString("date")
+            }
+        }
+    } catch (e: Exception) {
+        throw e
+    }
 }
 
 //@OptIn(ExperimentalResourceApi::class)

@@ -1,4 +1,4 @@
-package Utils
+package com.chacademy.android.Utils
 
 import platform.Foundation.NSUserDefaults
 import platform.darwin.NSObject

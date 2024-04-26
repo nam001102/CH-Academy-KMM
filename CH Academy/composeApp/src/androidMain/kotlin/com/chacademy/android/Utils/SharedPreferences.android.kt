@@ -1,4 +1,4 @@
-package Utils
+package com.chacademy.android.Utils
 
 import android.app.Activity
 import android.content.Context.MODE_PRIVATE

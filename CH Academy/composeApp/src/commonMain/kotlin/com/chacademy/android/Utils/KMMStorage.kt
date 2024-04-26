@@ -1,4 +1,4 @@
-package Utils
+package com.chacademy.android.Utils
 
 class KMMStorage(val context: SPref) {
 

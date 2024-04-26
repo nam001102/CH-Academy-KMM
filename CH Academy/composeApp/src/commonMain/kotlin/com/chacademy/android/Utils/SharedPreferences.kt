@@ -1,4 +1,4 @@
-package Utils
+package com.chacademy.android.Utils
 
 
 expect class SPref

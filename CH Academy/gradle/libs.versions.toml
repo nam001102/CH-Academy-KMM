@@ -14,6 +14,7 @@ compose = "1.6.6"
 compose-plugin = "1.6.2"
 junit = "4.13.2"
 kotlin = "1.9.23"
+kotlinxSerializationJsonVersion = "1.5.1"
 material3Android = "1.2.1"
 extensionsComposeJetbrains = "2.1.4-compose-experimental"
 decompose = "2.2.1"
@@ -40,6 +41,7 @@ compose-ui-tooling-preview = { module = "androidx.compose.ui:ui-tooling-preview"
 androidx-material3-android = { group = "androidx.compose.material3", name = "material3-android", version.ref = "material3Android" }
 kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinxSerializationJson" }
 androidx-ui-text-google-fonts = { group = "androidx.compose.ui", name = "ui-text-google-fonts", version.ref = "uiTextGoogleFonts" }
+kotlinx-serialization-json-v151 = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinxSerializationJsonVersion" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
