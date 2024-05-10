@@ -6,6 +6,7 @@ plugins {
     alias(libs.plugins.jetbrainsCompose)
     alias(libs.plugins.kotlinSerialization)
     alias(libs.plugins.googleservices)
+    alias(libs.plugins.swiftklib)
 }
 
 kotlin {
@@ -25,6 +26,13 @@ kotlin {
         iosTarget.binaries.framework {
             baseName = "ComposeApp"
             isStatic = true
+        }
+        iosTarget.compilations {
+            val main by getting {
+                cinterops {
+                    create("KCrypto")
+                }
+            }
         }
     }
     
@@ -51,6 +59,14 @@ kotlin {
 
             implementation(libs.kotlinx.serialization.json)
 
+            implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.3")
+
+//            implementation(project.dependencies.platform("com.google.firebase:firebase-bom:33.0.0"))
+//            implementation("com.google.firebase:firebase-firestore:24.10.3")
+//            implementation("com.google.firebase:firebase-firestore-ktx")
+
+
+
             implementation("dev.gitlive:firebase-auth:1.12.0")
             implementation("dev.gitlive:firebase-database:1.12.0")
             implementation("dev.gitlive:firebase-firestore:1.12.0")
@@ -65,8 +81,15 @@ kotlin {
             implementation("dev.icerock.moko:mvvm-compose:0.16.1")
             implementation("dev.icerock.moko:mvvm-flow-compose:0.16.1")
             implementation("dev.icerock.moko:mvvm-livedata-compose:0.16.1")
+            implementation("org.jetbrains.androidx.lifecycle:lifecycle-viewmodel-compose:2.8.0-beta02")
 
         }
+    }
+}
+swiftklib {
+    create("KCrypto") {
+        path = file("Utils/KCrypto")
+        packageName("com.chacademy.ios.kcrypto")
     }
 }
 
@@ -111,5 +134,8 @@ android {
 dependencies {
     implementation(libs.androidx.material3.android)
     implementation(libs.androidx.ui.text.google.fonts)
+    implementation(libs.androidx.lifecycle.viewmodel.compose)
+    implementation(libs.firebase.firestore.ktx)
+//    implementation(project(":composeApp"))
 }
 

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "541449747866",
+    "project_id": "ch-academy",
+    "storage_bucket": "ch-academy.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:541449747866:android:174134320fc43acf410e23",
+        "android_client_info": {
+          "package_name": "com.chacademy.android"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAn2OlGYAemf7M1fK2VcJq8rYzmcJ38xD8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

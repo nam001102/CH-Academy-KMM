@@ -15,62 +15,51 @@ class IOSFirestoreRepository : FirestoreRepository {
     private val _userData = MutableLiveData<UserData>(UserData())
     override val userData: LiveData<UserData> get() = _userData
 
-    override fun setupSnapshotListener(userId: String) {
+    override suspend fun setupSnapshotListener(userId: String) {
         val userDataDocument = db.collection("users").document(userId)
         val userStatsDocument = userDataDocument.collection("Stats").document("State")
 
-        userDataDocument.addSnapshotListener { userSnapshot, error ->
-            if (error != null) {
-
-                Log.e("UserDataViewModel", "Error fetching stats data: $error")
-                return@addSnapshotListener
-            }
-            if (userSnapshot != null && userSnapshot.exists()) {
+        userDataDocument.snapshots.collect{ document ->
+            if (document.exists) {
                 _userData.value = _userData.value.copy(
-                    avatar = userSnapshot.getString("avatar") ?: "",
-                    background = userSnapshot.getString("background") ?: "",
-                    phone = userSnapshot.getString("phone") ?: userId,
-                    name = userSnapshot.getString("name") ?: "",
-                    date = userSnapshot.getString("date") ?: "",
-                    point = userSnapshot.getLong("point") ?: 0,
-                    sex = userSnapshot.getLong("sex")?.toString()?.toLong() ?: 2,
-                    bio = userSnapshot.getString("bio") ?: "",
-                    unlockedVideos = userSnapshot.get("videoImageList") as? List<String>
+                    avatar = document.get("avatar") ?: "",
+                    background = document.get("background") ?: "",
+                    phone = document.get("phone") ?: userId,
+                    name = document.get("name") ?: "",
+                    date = document.get("date") ?: "",
+                    point = document.get("point") ?: 0,
+                    sex = document.get("sex")?: 2,
+                    bio = document.get("bio") ?: "",
+                    unlockedVideos = document.get("videoImageList") as? List<String>
                         ?: emptyList(),
                 )
             }
+
         }
-
-        userStatsDocument.addSnapshotListener { statsSnapshot, error ->
-            if (error != null) {
-
-                Log.e("UserDataViewModel", "Error fetching stats data: $error")
-                return@addSnapshotListener
-            }
-            if (statsSnapshot != null && statsSnapshot.exists()) {
+        userStatsDocument.snapshots.collect{ document ->
+            if (document.exists) {
                 _userData.value = _userData.value.copy(
-                    Life = statsSnapshot.getBoolean("Life") ?: true,
-                    Destiny = statsSnapshot.getBoolean("Destiny") ?: false,
-                    Connection = statsSnapshot.getBoolean("Connection") ?: false,
-                    Growth = statsSnapshot.getBoolean("Growth") ?: false,
-                    Soul = statsSnapshot.getBoolean("Soul") ?: false,
-                    Personality = statsSnapshot.getBoolean("Personality") ?: false,
-                    Connecting = statsSnapshot.getBoolean("Connecting") ?: false,
-                    Balance = statsSnapshot.getBoolean("Balance") ?: false,
-                    RationalThinking = statsSnapshot.getBoolean("RationalThinking") ?: false,
-                    MentalPower = statsSnapshot.getBoolean("MentalPower") ?: false,
-                    DayOfBirth = statsSnapshot.getBoolean("DayOfBirth") ?: false,
-                    Passion = statsSnapshot.getBoolean("Passion") ?: false,
-                    MissingNumbers = statsSnapshot.getBoolean("MissingNumbers") ?: false,
-                    PersonalYear = statsSnapshot.getBoolean("PersonalYear") ?: false,
-                    PersonalMonth = statsSnapshot.getBoolean("PersonalMonth") ?: false,
-                    PersonalDay = statsSnapshot.getBoolean("PersonalDay") ?: false,
-                    Phrase = statsSnapshot.getBoolean("Phrase") ?: false,
-                    Challange = statsSnapshot.getBoolean("Challange") ?: false,
-                    Agging = statsSnapshot.getBoolean("Agging") ?: false
+                    Life = document.get("Life") ?: true,
+                    Destiny = document.get("Destiny") ?: false,
+                    Connection = document.get("Connection") ?: false,
+                    Growth = document.get("Growth") ?: false,
+                    Soul = document.get("Soul") ?: false,
+                    Personality = document.get("Personality") ?: false,
+                    Connecting = document.get("Connecting") ?: false,
+                    Balance = document.get("Balance") ?: false,
+                    RationalThinking = document.get("RationalThinking") ?: false,
+                    MentalPower = document.get("MentalPower") ?: false,
+                    DayOfBirth = document.get("DayOfBirth") ?: false,
+                    Passion = document.get("Passion") ?: false,
+                    MissingNumbers = document.get("MissingNumbers") ?: false,
+                    PersonalYear = document.get("PersonalYear") ?: false,
+                    PersonalMonth = document.get("PersonalMonth") ?: false,
+                    PersonalDay = document.get("PersonalDay") ?: false,
+                    Phrase = document.get("Phrase") ?: false,
+                    Challange = document.get("Challange") ?: false,
+                    Agging = document.get("Agging") ?: false
                 )
             }
         }
-
     }
 }
