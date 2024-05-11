@@ -1,6 +1,5 @@
 package Login
 
-import Platform
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.core.tween
 import androidx.compose.animation.fadeOut
@@ -50,32 +49,22 @@ import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import cafe.adriel.voyager.navigator.Navigator
 import chacademy.composeapp.generated.resources.Res
 import chacademy.composeapp.generated.resources.ic_invisable
 import chacademy.composeapp.generated.resources.ic_visable
 import chacademy.composeapp.generated.resources.worksans_regular
-import com.chacademy.android.Utils.Cipher
-import com.chacademy.android.Utils.CipherWrapper
+import Cipher
 import com.chacademy.android.Utils.UserData
-import com.chacademy.android.Utils.UserViewModel
 import com.chacademy.android.Utils.getUserViewModel
-import com.chacademy.android.Utils.getUsers
 import com.chacademy.android.Utils.getUsersById
 import dev.gitlive.firebase.Firebase
 import dev.gitlive.firebase.auth.auth
 import dev.gitlive.firebase.firestore.firestore
-import dev.icerock.moko.mvvm.livedata.compose.observeAsState
 import getPlatform
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.launch
-import kotlinx.serialization.builtins.serializer
 import org.jetbrains.compose.resources.ExperimentalResourceApi
 import org.jetbrains.compose.resources.Font
 import org.jetbrains.compose.resources.painterResource
-import kotlin.coroutines.CoroutineContext
 
 
 private var userPhone by mutableStateOf(TextFieldValue(""))

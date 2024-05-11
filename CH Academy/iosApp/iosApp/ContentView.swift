@@ -1,20 +1,18 @@
-import UIKit
+import Foundation
 import SwiftUI
-import shared
+import ComposeApp
 
-struct ComposeView: UIViewControllerRepresentable, UIResponder, UIApplicationDelegate {
+struct ComposeView: UIViewControllerRepresentable {
 
     var window: UIWindow?
 
     func makeUIViewController(context: Context) -> UIViewController {
-        let firestoreListener = UserViewModelIosApp()
-        ComposeAppKt.setupFirestoreListener(listener: firestoreListener)
 
         return MainViewControllerKt.MainViewController()
     }
 
     func updateUIViewController(_ uiViewController: UIViewController, context: Context) {}
-
+    
 
 }
 

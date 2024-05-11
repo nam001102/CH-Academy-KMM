@@ -1,5 +1,3 @@
-package com.chacademy.android.Utils
-
 interface CipherWrapper {
     fun encrypt(str: String): String
     fun decrypt(str: String): String

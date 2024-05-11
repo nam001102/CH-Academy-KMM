@@ -1,3 +1,0 @@
-class UserDataViewModelIos : ViewModel() {
-    
-}

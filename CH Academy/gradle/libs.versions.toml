@@ -56,3 +56,4 @@ kotlinMultiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref =
 kotlinSerialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 googleservices = { id = "com.google.gms.google-services", version.ref = "googleServices"  }
 swiftklib = { id = "io.github.ttypic.swiftklib", version.ref = "swiftklib"  }
+cocoapods = { id = "org.jetbrains.kotlin.native.cocoapods", version.ref = "kotlin" }

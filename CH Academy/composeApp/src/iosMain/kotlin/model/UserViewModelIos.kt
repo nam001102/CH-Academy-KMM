@@ -20,16 +20,19 @@ class UserViewModelIos : UserViewModel {
     private val db = Firebase.firestore
 
     private val _userData = MutableStateFlow(UserData())
-    override val userData: StateFlow<UserData> get() = _userData
+    val userData: StateFlow<UserData> get() = _userData
+    override fun fetchUserData(userId: String, callback: (UserData) -> Unit) {
+        CoroutineScope(Dispatchers.IO).launch {
+            try {
+                val user = withContext(Dispatchers.IO) {
+                    getUsersById(userId)
+                }
+                callback(user)
+            } catch (e: Exception){
 
-    override fun setupSnapshotListener(userId: String)  {
-
-        fun setupSnapshotListener(listener: UserViewModel) {
-            // Call the Swift implementation of setupSnapshotListener
-            listener.setupSnapshotListener(userId)
+            }
         }
     }
-
 
     override fun updateStatsStatus(userId: String, statsId: String, newStatus: Boolean) {
         CoroutineScope(Dispatchers.IO).launch(Dispatchers.IO) {

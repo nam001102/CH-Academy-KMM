@@ -1,4 +1,5 @@
 import org.jetbrains.compose.desktop.application.dsl.TargetFormat
+import org.jetbrains.kotlin.gradle.plugin.KotlinDependencyHandler
 
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
@@ -7,6 +8,8 @@ plugins {
     alias(libs.plugins.kotlinSerialization)
     alias(libs.plugins.googleservices)
     alias(libs.plugins.swiftklib)
+    alias(libs.plugins.cocoapods)
+
 }
 
 kotlin {
@@ -27,13 +30,13 @@ kotlin {
             baseName = "ComposeApp"
             isStatic = true
         }
-        iosTarget.compilations {
-            val main by getting {
-                cinterops {
-                    create("KCrypto")
-                }
-            }
-        }
+//        iosTarget.compilations {
+//            val main by getting {
+//                cinterops {
+//                    create("KCrypto")
+//                }
+//            }
+//        }
     }
     
     sourceSets {
@@ -61,6 +64,8 @@ kotlin {
 
             implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.3")
 
+            implementation("com.soywiz.korlibs.krypto:krypto:4.0.10")
+
 //            implementation(project.dependencies.platform("com.google.firebase:firebase-bom:33.0.0"))
 //            implementation("com.google.firebase:firebase-firestore:24.10.3")
 //            implementation("com.google.firebase:firebase-firestore-ktx")
@@ -85,13 +90,30 @@ kotlin {
 
         }
     }
-}
-swiftklib {
-    create("KCrypto") {
-        path = file("Utils/KCrypto")
-        packageName("com.chacademy.ios.kcrypto")
+
+    cocoapods {
+        version = "1.0"
+        summary = "CH Academy ios libs"
+        homepage = "null"
+
+        ios.deploymentTarget = "13.5"
+
+        pod("CryptoSwift") {
+            version = "1.8.2"
+        }
     }
+
 }
+//swiftklib {
+//    create("KCrypto") {
+//        path = file("Utils/KCrypto")
+//        packageName("com.chacademy.ios.kcrypto")
+//
+//        dependencies {
+//            api("com.github.krzyzanowskim:CryptoSwift:1.8.2")
+//        }
+//    }
+//}
 
 android {
     namespace = "com.chacademy.android"
