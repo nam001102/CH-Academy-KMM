@@ -7,66 +7,106 @@
 //
 
 import Foundation
-import CryptoSwift
+import CommonCrypto
 
 
 struct KCrypto {
-    static func generateRandomIV(length: Int) -> [UInt8] {
-        var randomIV = [UInt8](repeating: 0, count: length)
-        _ = SecRandomCopyBytes(kSecRandomDefault, length, &randomIV)
-        return randomIV
-    }
-
-    static func aesEncrypt(pass: String) -> String {
-        let password: [UInt8] = Array(pass.utf8)
-        let randomIV = generateRandomIV(length: AES.blockSize)
-        let randomKey = generateRandomIV(length: 32) // 256-bit key
-
-        do {
-            /* AES cryptor instance */
-            let aes = try AES(key: randomKey, blockMode: CBC(iv: randomIV), padding: .pkcs7)
-
-            /* Encrypt Data */
-            let inputData = Data(password)
-            let encryptedBytes = try aes.encrypt(inputData.bytes)
-            let encryptedData = Data(encryptedBytes)
-
-            return "\(Data(randomIV).base64EncodedString()),\(Data(randomKey).base64EncodedString()),\(encryptedData.base64EncodedString())"
-        } catch {
-            // Handle the error here
-            return "An error occurred: \(error)"
+    static func encryptAndSavePassword(strToEncrypt: String) -> String? {
+        guard let plainTextData = strToEncrypt.data(using: .utf8) else {
+            return nil
         }
-    }
 
-    static func aesDecrypt(pass: String) -> String? {
-        let passwordArr = pass.components(separatedBy: ",")
-        guard passwordArr.count == 3 else {
-            return nil  // Invalid input format
+        let keySize = kCCKeySizeAES256
+        var key = Data(count: keySize)
+        key.withUnsafeMutableBytes { keyBytes in
+            _ = CCRandomGenerateBytes(keyBytes.baseAddress, keySize)
         }
-        let encryptedData = Data(base64Encoded: passwordArr[2])
-        let inputIV = [UInt8](Data(base64Encoded: passwordArr[0]) ?? Data())
-        let inputKey = [UInt8](Data(base64Encoded: passwordArr[1]) ?? Data())
 
-        do {
-            let aes = try AES(key: inputKey, blockMode: CBC(iv: inputIV), padding: .pkcs7)
+        var iv = Data(count: keySize)
+        iv.withUnsafeMutableBytes { ivBytes in
+            _ = CCRandomGenerateBytes(ivBytes.baseAddress, keySize)
+        }
 
-            guard let encryptedData = encryptedData else {
-                return nil  // Invalid input format
+        var buffer = [UInt8](repeating: 0, count: plainTextData.count + kCCBlockSizeAES128)
+        var bufferLen: Int = 0
+
+        let status = plainTextData.withUnsafeBytes { plainTextBytes in
+            iv.withUnsafeBytes { ivBytes in
+                key.withUnsafeBytes { keyBytes in
+                    CCCrypt(
+                        CCOperation(kCCEncrypt),
+                        CCAlgorithm(kCCAlgorithmAES),
+                        CCOptions(kCCOptionPKCS7Padding),
+                        keyBytes.baseAddress,
+                        keySize,
+                        ivBytes.baseAddress,
+                        plainTextBytes.baseAddress,
+                        plainTextData.count,
+                        &buffer,
+                        buffer.count,
+                        &bufferLen
+                    )
+                }
             }
+        }
 
-            /* Decrypt Data */
-            let decryptedBytes = try aes.decrypt(encryptedData.bytes)
-            let decryptedData = Data(decryptedBytes)
+        if status == kCCSuccess {
+            let cipherTextData = Data(bytes: buffer, count: bufferLen)
+            let cipherText = cipherTextData.base64EncodedString()
+            let cipherKey = key.base64EncodedString()
+            let cipherIv = iv.base64EncodedString()
 
-            if let decryptedString = String(data: decryptedData, encoding: .utf8) {
-                return decryptedString
+            return "{\(cipherIv),\(cipherKey),\(cipherText)}"
+        } else {
+            print("Encryption failed")
+            return nil
+        }
+    }
+
+    static func getDecryptedPassword(pass: String) -> String? {
+        let passwordArr = pass.components(separatedBy: ",")
+
+        guard passwordArr.count == 3,
+              let iv = Data(base64Encoded: passwordArr[0]),
+              let key = Data(base64Encoded: passwordArr[1]),
+              let encryptedData = Data(base64Encoded: passwordArr[2])
+        else {
+            return nil
+        }
+
+        var buffer = [UInt8](repeating: 0, count: encryptedData.count + kCCBlockSizeAES128)
+        var bufferLen: Int = 0
+
+        let status = encryptedData.withUnsafeBytes { encryptedBytes in
+            iv.withUnsafeBytes { ivBytes in
+                key.withUnsafeBytes { keyBytes in
+                    CCCrypt(
+                        CCOperation(kCCDecrypt),
+                        CCAlgorithm(kCCAlgorithmAES),
+                        CCOptions(kCCOptionPKCS7Padding),
+                        keyBytes.baseAddress,
+                        key.count,
+                        ivBytes.baseAddress,
+                        encryptedBytes.baseAddress,
+                        encryptedData.count,
+                        &buffer,
+                        buffer.count,
+                        &bufferLen
+                    )
+                }
+            }
+        }
+
+        if status == kCCSuccess {
+            let decryptedData = Data(bytes: buffer, count: bufferLen)
+            if let decryptedPassword = String(data: decryptedData, encoding: .utf8) {
+                return decryptedPassword
             } else {
-                // Handle the case where the decrypted data cannot be converted to a string
+                print("Decoding failed")
                 return nil
             }
-        } catch {
-            // Handle decryption errors
-            print("Decryption failed: \(error)")
+        } else {
+            print("Decryption failed")
             return nil
         }
     }
