@@ -30,13 +30,13 @@ kotlin {
             baseName = "ComposeApp"
             isStatic = true
         }
-//        iosTarget.compilations {
-//            val main by getting {
-//                cinterops {
-//                    create("KCrypto")
-//                }
-//            }
-//        }
+        iosTarget.compilations {
+            val main by getting {
+                cinterops {
+                    create("KCrypto")
+                }
+            }
+        }
     }
     
     sourceSets {
@@ -104,16 +104,13 @@ kotlin {
     }
 
 }
-//swiftklib {
-//    create("KCrypto") {
-//        path = file("Utils/KCrypto")
-//        packageName("com.chacademy.ios.kcrypto")
-//
-//        dependencies {
-//            api("com.github.krzyzanowskim:CryptoSwift:1.8.2")
-//        }
-//    }
-//}
+swiftklib {
+    create("KCrypto") {
+        path = file("Utils/KCrypto")
+        packageName("com.chacademy.objclibs.kcrypto")
+
+    }
+}
 
 android {
     namespace = "com.chacademy.android"
