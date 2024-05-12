@@ -4,14 +4,14 @@ import kotlinx.cinterop.ExperimentalForeignApi
 class IosCipher : CipherWrapper {
     @OptIn(ExperimentalForeignApi::class)
     override fun encrypt(str: String): String {
-        return Kcrypto.encrypt(str)!!
+        return Crypto.encrypt(str)!!
     }
     override fun decrypt(str: String): String {
-        return Kcrypto.decrypt(str)!!
+        return Crypto.decrypt(str)!!
     }
 }
 
-object Kcrypto {
+object Crypto {
     @OptIn(ExperimentalForeignApi::class)
     fun encrypt(strToEncrypt: String): String? {
         return KCrypto.encrypt(strToEncrypt = strToEncrypt)
