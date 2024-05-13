@@ -1,9 +1,11 @@
 package com.chacademy.android.Utils
 
 
-expect class SPref
-
-expect fun SPref.getInt(key: String) : Int
-expect fun SPref.setInt(key: String, value: Int)
-expect fun SPref.getString(key: String) : String
-expect fun SPref.setString(key: String, value: String)
+expect class SPref() {
+    fun getInt(key: String): Int
+    fun setInt(key: String, value: Int)
+    fun getBoolean(key: String): Boolean
+    fun setBoolean(key: String, value: Boolean)
+    fun getString(key: String): String
+    fun setString(key: String, value: String)
+}

@@ -53,13 +53,13 @@ import chacademy.composeapp.generated.resources.Res
 import chacademy.composeapp.generated.resources.ic_invisable
 import chacademy.composeapp.generated.resources.ic_visable
 import chacademy.composeapp.generated.resources.worksans_regular
-import Cipher
+import androidx.compose.runtime.collectAsState
 import com.chacademy.android.Utils.UserData
 import com.chacademy.android.Utils.getUserViewModel
-import com.chacademy.android.Utils.getUsersById
 import dev.gitlive.firebase.Firebase
 import dev.gitlive.firebase.auth.auth
 import dev.gitlive.firebase.firestore.firestore
+import getCipher
 import getPlatform
 import kotlinx.coroutines.flow.MutableStateFlow
 import org.jetbrains.compose.resources.ExperimentalResourceApi
@@ -79,7 +79,7 @@ fun ComposeLogin() {
 
     var platform = if (getPlatform().shortname.equals("Android")) 1 else 0
 
-    val stateFlow: MutableStateFlow<UserData> = MutableStateFlow(UserData())
+    val stateFlow: MutableStateFlow<UserData> = remember { MutableStateFlow(UserData()) }
 
 
 //    when(platform){
@@ -102,32 +102,39 @@ fun ComposeLogin() {
 
     val userDataState = remember { mutableStateOf<UserData?>(null) }
     var userId = remember { mutableStateOf("") }
-    var list by remember { mutableStateOf(UserData()) }
-    LaunchedEffect(Unit) {
-//            userViewModel.getUserData(userId.value)
-        list = getUsersById("+84987654322")
 
-        getUserViewModel().fetchUserData("+84987654322"){ userData ->
-            stateFlow.value = userData
-        }
-
+    var loggingIn by remember {
+        mutableStateOf(false)
     }
 
 
+    val user = stateFlow.collectAsState().value
+    showError = true
 
+    if (loggingIn){
+        errorMessage ="fetching"
+        LaunchedEffect(Unit) {
+            getUserViewModel().fetchUserData("+84" + userPhone.text.substring(1)){ userData ->
+                stateFlow.value = userData
+            }
+            errorMessage ="fetched"
+        }
 
+        when(user.name){
+            null ->{errorMessage ="logging"}
+            else ->{
+                LaunchedEffect(Unit) {
+                    startLoggingIn(userPhone.text, userPassword.text,getCipher().decrypt(user.password.toString()))
+                }
+            }
+        }
 
-    var loggingIn = false
-
-//    if (loggingIn){
-//
 //        LaunchedEffect(loggingIn){
 //            startLoggingIn(userPhone.text, userPassword.text)
 //        }
-//    }
+    }
 
-    showError = true
-    errorMessage = list.name.toString()
+
 //    errorMessage = list.point.toString()
 
 
@@ -210,7 +217,7 @@ fun ComposeLogin() {
                     showError = true
                     textError = "Mật khẩu không được để trống"
                 } else {
-                    loggingIn = !loggingIn
+                    loggingIn = true
                 }
 //                if (userPhone.text.isNotEmpty() && userPassword.text.isNotEmpty()) {
 //
@@ -412,38 +419,21 @@ private fun showErrorCompose(showError: Boolean, error: String) {
     }
 }
 
-private suspend fun startLoggingIn(phoneNumber: String, Password: String) {
-    val db = Firebase.firestore
-    val userRef = db.collection("users").document("+84" + phoneNumber.substring(1))
-    userRef.get().reference.snapshots.collect { i ->
-        if (i.exists) {
-            val password = i.get("password") ?:""
-            val name = i.get("name") ?:""
+private suspend fun startLoggingIn(phoneNumber: String, password: String, decrypt: String) {
+    if (decrypt == password) {
+        auth.signInWithEmailAndPassword(
+            "+84" + phoneNumber.substring(1) + "@cth.coach",
+            "+84" + phoneNumber.substring(1)
+        )
+        if (auth.currentUser != null){
 
-            val decrypt = Cipher().decrypt(password)
-            errorMessage = name
-            if (decrypt == Password) {
-                auth.signInWithEmailAndPassword(
-                    "+84" + phoneNumber.substring(1) + "@cth.coach",
-                    "+84" + phoneNumber.substring(1)
-                )
-                if (auth.currentUser != null){
-                    val user = auth.currentUser
-                    val uid = user?.uid
-                    val data = hashMapOf(
-                        "uid" to uid
-                    )
-                    userRef.set(data,merge = true)
-//                    val sharedPreferences : ShareP
-//                    Navigator(
+//            val sharedPreferences : ShareP
+//            Navigator(
 //
-//                    )
-                    errorMessage = "1"
-                }
-            } else {
-//                errorMessage = "Đăng nhập thất bại, tài khoản hoặc mật khẩu sai."
-            }
-
+//            )
+            errorMessage = "1"
         }
+    } else {
+//                errorMessage = "Đăng nhập thất bại, tài khoản hoặc mật khẩu sai."
     }
 }
