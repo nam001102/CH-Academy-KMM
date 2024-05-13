@@ -31,11 +31,11 @@ kotlin {
             isStatic = true
         }
         iosTarget.compilations {
-            val main by getting {
-                cinterops {
-                    create("KCrypto")
-                }
-            }
+//            val main by getting {
+//                cinterops {
+//                    create("KCrypto")
+//                }
+//            }
         }
     }
     
@@ -62,6 +62,8 @@ kotlin {
 
             implementation(libs.kotlinx.serialization.json)
 
+            implementation("org.jetbrains.kotlinx:kotlinx-datetime:0.6.0")
+
             implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.3")
 
             implementation("com.soywiz.korlibs.krypto:krypto:4.0.10")
@@ -81,6 +83,7 @@ kotlin {
             implementation("cafe.adriel.voyager:voyager-navigator:1.0.0")
             implementation("cafe.adriel.voyager:voyager-tab-navigator:1.0.0")
             implementation("cafe.adriel.voyager:voyager-transitions:1.0.0")
+            implementation("cafe.adriel.voyager:voyager-screenmodel:1.0.0")
 
             //MOKO
             implementation("dev.icerock.moko:mvvm-compose:0.16.1")

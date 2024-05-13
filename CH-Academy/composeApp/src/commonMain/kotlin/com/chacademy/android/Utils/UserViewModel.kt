@@ -16,6 +16,7 @@ data class UserData(
     var avatar: String? = "",
     var background: String? = "",
     var phone: String? = null,
+    var password: String? = null,
     var name: String? = null,
     var date: String? = null,
     var email: String? = null,
@@ -77,6 +78,7 @@ suspend fun getUsersById(userId: String): UserData {
         val avatar = userDataDocument.get().get("avatar") ?:""
         val background = userDataDocument.get().get("background") ?:""
         val phone = userDataDocument.get().get("phone") ?:""
+        val password = userDataDocument.get().get("password") ?:""
         val name = userDataDocument.get().get("name") ?:""
         val date = userDataDocument.get().get("date") ?:""
         val point = userDataDocument.get().get("point") ?:0.toLong()
@@ -107,6 +109,7 @@ suspend fun getUsersById(userId: String): UserData {
             avatar = avatar,
             background = background,
             phone = phone,
+            password = password,
             name = name,
             date = date,
             point = point,

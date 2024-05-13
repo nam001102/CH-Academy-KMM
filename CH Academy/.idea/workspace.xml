@@ -5,93 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b2045384-e33c-4d88-839f-d5a3e9af9ff7" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.fleet/receipt.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle.kts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/composeApp/Utils/KCrypto/KCrypto.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/composeApp/build.gradle.kts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/composeApp/composeApp.podspec" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/composeApp/debug/composeApp-debug.aab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/composeApp/google-services.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/composeApp/src/androidMain/AndroidManifest.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/composeApp/src/androidMain/google-services.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/composeApp/src/androidMain/kotlin/CipherWrapper.android.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/composeApp/src/androidMain/kotlin/Platform.android.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/composeApp/src/androidMain/kotlin/com/chacademy/android/MainActivity.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/composeApp/src/androidMain/kotlin/com/chacademy/android/Utils/SharedPreferences.android.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/composeApp/src/androidMain/kotlin/com/chacademy/android/Utils/UserViewModel.android.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/composeApp/src/androidMain/kotlin/com/chacademy/android/Utils/aes2.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/composeApp/src/androidMain/kotlin/com/chacademy/android/Utils/getContext.android.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/composeApp/src/androidMain/kotlin/com/chacademy/android/model/UserViewModelAndroid.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/composeApp/src/androidMain/res/drawable-v24/ic_launcher_foreground.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/composeApp/src/androidMain/res/drawable/ic_launcher_background.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/composeApp/src/androidMain/res/mipmap-anydpi-v26/ic_launcher.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/composeApp/src/androidMain/res/mipmap-anydpi-v26/ic_launcher_round.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/composeApp/src/androidMain/res/mipmap-hdpi/ic_launcher.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/composeApp/src/androidMain/res/mipmap-hdpi/ic_launcher_foreground.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/composeApp/src/androidMain/res/mipmap-hdpi/ic_launcher_round.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/composeApp/src/androidMain/res/mipmap-mdpi/ic_launcher.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/composeApp/src/androidMain/res/mipmap-mdpi/ic_launcher_foreground.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/composeApp/src/androidMain/res/mipmap-mdpi/ic_launcher_round.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/composeApp/src/androidMain/res/mipmap-xhdpi/ic_launcher.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/composeApp/src/androidMain/res/mipmap-xhdpi/ic_launcher_foreground.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/composeApp/src/androidMain/res/mipmap-xhdpi/ic_launcher_round.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/composeApp/src/androidMain/res/mipmap-xxhdpi/ic_launcher.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/composeApp/src/androidMain/res/mipmap-xxhdpi/ic_launcher_foreground.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/composeApp/src/androidMain/res/mipmap-xxhdpi/ic_launcher_round.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/composeApp/src/androidMain/res/mipmap-xxxhdpi/ic_launcher.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/composeApp/src/androidMain/res/mipmap-xxxhdpi/ic_launcher_foreground.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/composeApp/src/androidMain/res/mipmap-xxxhdpi/ic_launcher_round.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/composeApp/src/androidMain/res/values/strings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/composeApp/src/androidMain/res/values/themes.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/composeApp/src/commonMain/composeResources/drawable/compose-multiplatform.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/composeApp/src/commonMain/composeResources/drawable/ic_invisable.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/composeApp/src/commonMain/composeResources/drawable/ic_logo_inner.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/composeApp/src/commonMain/composeResources/drawable/ic_logo_outer.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/composeApp/src/commonMain/composeResources/drawable/ic_visable.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/composeApp/src/commonMain/composeResources/font/worksans_regular.ttf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/composeApp/src/commonMain/kotlin/App.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/composeApp/src/commonMain/kotlin/CipherWrapper.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/composeApp/src/commonMain/kotlin/Greeting.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/composeApp/src/commonMain/kotlin/Login/AccountManager.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/composeApp/src/commonMain/kotlin/Login/ComposeLogin.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/composeApp/src/commonMain/kotlin/Login/ComposeRegister.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/composeApp/src/commonMain/kotlin/Login/ComposeSpinningLogo.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/composeApp/src/commonMain/kotlin/Platform.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/composeApp/src/commonMain/kotlin/com/chacademy/android/Utils/AppContext.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/composeApp/src/commonMain/kotlin/com/chacademy/android/Utils/KMMStorage.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/composeApp/src/commonMain/kotlin/com/chacademy/android/Utils/SharedPreferences.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/composeApp/src/commonMain/kotlin/com/chacademy/android/Utils/UserViewModel.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/composeApp/src/iosMain/kotlin/CipherWrapper.ios.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/composeApp/src/iosMain/kotlin/MainViewController.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/composeApp/src/iosMain/kotlin/Platform.ios.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/composeApp/src/iosMain/kotlin/com/chacademy/android/Utils/AppContext.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/composeApp/src/iosMain/kotlin/com/chacademy/android/Utils/SharedPreferences.ios.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/composeApp/src/iosMain/kotlin/com/chacademy/android/Utils/UserViewModel.ios.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/composeApp/src/iosMain/kotlin/model/UserViewModelIos.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle/libs.versions.toml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradlew" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradlew.bat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/iosApp/Configuration/Config.xcconfig" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/iosApp/Podfile" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/iosApp/iosApp.xcodeproj/project.pbxproj" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/iosApp/iosApp.xcodeproj/project.xcworkspace/xcshareddata/IDEWorkspaceChecks.plist" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/iosApp/iosApp.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/iosApp/iosApp/Assets.xcassets/AccentColor.colorset/Contents.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/iosApp/iosApp/Assets.xcassets/AppIcon.appiconset/Contents.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/iosApp/iosApp/Assets.xcassets/AppIcon.appiconset/app-icon-1024.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/iosApp/iosApp/Assets.xcassets/Contents.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/iosApp/iosApp/ContentView.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/iosApp/iosApp/GoogleService-Info.plist" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/iosApp/iosApp/Info.plist" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/iosApp/iosApp/Preview Content/Preview Assets.xcassets/Contents.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/iosApp/iosApp/Utils/KCrypto.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/iosApp/iosApp/iOSApp.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/settings.gradle.kts" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/composeApp/src/androidMain/kotlin/com/chacademy/android/data/AppSettings.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/composeApp/src/androidMain/kotlin/com/chacademy/android/data/billing/CommonBilling.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/composeApp/src/androidMain/kotlin/com/chacademy/android/utils/GMTDateToInstant.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/composeApp/src/androidMain/kotlin/com/chacademy/android/utils/LoadingState.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../CH-Academy/composeApp/composeApp.podspec" beforeDir="false" afterPath="$PROJECT_DIR$/../CH-Academy/composeApp/composeApp.podspec" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../CH-Academy/composeApp/src/commonMain/kotlin/com/chacademy/android/Utils/API2FaSms/SMSSetup.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../CH-Academy/composeApp/src/commonMain/kotlin/com/chacademy/android/Utils/UserViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../CH-Academy/composeApp/src/commonMain/kotlin/com/chacademy/android/Utils/UserViewModel.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -101,7 +22,7 @@
   <component name="ClangdSettings">
     <option name="formatViaClangd" value="false" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[/Users/admin/.android/avd/Pixel_3a_API_34_extension_level_7_x86_64.avd]" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[C:\Users\Admin\.android\avd\Pixel_4_API_34.avd]" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -119,12 +40,20 @@
       </state>
     </system>
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Kotlin File" />
+        <option value="Kotlin Class" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="KotlinMultiplatform" KONAN_HOME="$USER_HOME$/.konan/kotlin-native-prebuilt-macos-x86_64-1.9.23">
-    <executable TARGET="ios_x64" TARGET_NAME="iosX64" EXECUTABLE_NAME="test" PROJECT_PREFIX=":composeApp:" IS_TEST="true">
-      <variant NAME="Debug" GRADLE_TASK=":composeApp:linkDebugTestIosX64" FILE="$PROJECT_DIR$/composeApp/build/bin/iosX64/debugTest/test.kexe" WORKING_DIR="" PROGRAM_PARAMS="">
+    <executable TARGET="ios_simulator_arm64" TARGET_NAME="iosSimulatorArm64" EXECUTABLE_NAME="test" PROJECT_PREFIX=":composeApp:" IS_TEST="true">
+      <variant NAME="Debug" GRADLE_TASK=":composeApp:linkDebugTestIosSimulatorArm64" FILE="$PROJECT_DIR$/composeApp/build/bin/iosSimulatorArm64/debugTest/test.kexe" WORKING_DIR="" PROGRAM_PARAMS="">
         <envs />
       </variant>
     </executable>
@@ -133,8 +62,8 @@
         <envs />
       </variant>
     </executable>
-    <executable TARGET="ios_simulator_arm64" TARGET_NAME="iosSimulatorArm64" EXECUTABLE_NAME="test" PROJECT_PREFIX=":composeApp:" IS_TEST="true">
-      <variant NAME="Debug" GRADLE_TASK=":composeApp:linkDebugTestIosSimulatorArm64" FILE="$PROJECT_DIR$/composeApp/build/bin/iosSimulatorArm64/debugTest/test.kexe" WORKING_DIR="" PROGRAM_PARAMS="">
+    <executable TARGET="ios_x64" TARGET_NAME="iosX64" EXECUTABLE_NAME="test" PROJECT_PREFIX=":composeApp:" IS_TEST="true">
+      <variant NAME="Debug" GRADLE_TASK=":composeApp:linkDebugTestIosX64" FILE="$PROJECT_DIR$/composeApp/build/bin/iosX64/debugTest/test.kexe" WORKING_DIR="" PROGRAM_PARAMS="">
         <envs />
       </variant>
     </executable>
@@ -146,23 +75,26 @@
   &quot;associatedIndex&quot;: 1
 }</component>
   <component name="ProjectId" id="2gIdiOUyiJbEzE2xrQOVV0SJeKi" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,
-    &quot;cf.first.check.clang-format&quot;: &quot;false&quot;,
-    &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
-    &quot;external.system.has.shared.sources&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/admin/Documents/GitHub/CH-Academy-KMM/CH Academy&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;swift.lang.settings.y&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.cidr.known.project.marker": "true",
+    "cf.first.check.clang-format": "false",
+    "cidr.known.project.marker": "true",
+    "external.system.has.shared.sources": "true",
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "C:/Users/Admin/Desktop/CH Academy",
+    "settings.editor.selected.configurable": "swift.lang.settings.y"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/composeApp/src/androidMain/kotlin" />
@@ -240,7 +172,7 @@
         <option name="Android.Gradle.BeforeRunTask" enabled="true" />
       </method>
     </configuration>
-    <configuration name="iosApp" type="KmmRunConfiguration" factoryName="iOS Application" CONFIG_VERSION="1" EXEC_TARGET_ID="27599D94-6BC5-46A6-BEA1-10BEADA17952" XCODE_PROJECT="$PROJECT_DIR$/iosApp/iosApp.xcodeproj" XCODE_CONFIGURATION="Debug" XCODE_SCHEME="iosApp">
+    <configuration name="iosApp" type="KmmRunConfiguration" factoryName="iOS Application" CONFIG_VERSION="1" EXEC_TARGET_ID="27599D94-6BC5-46A6-BEA1-10BEADA17952" XCODE_PROJECT="C:\Users\Admin\Downloads\CH Academy\CH Academy\iosApp\iosApp.xcodeproj" XCODE_CONFIGURATION="Debug" XCODE_SCHEME="iosApp">
       <method v="2">
         <option name="com.jetbrains.kmm.ios.BuildIOSAppTask" enabled="true" />
       </method>
